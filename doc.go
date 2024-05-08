@@ -27,4 +27,4 @@
 //	|/  |       |  \    \ /                    /  ' \/ _ \/ // / / |
 //	||  |       |  |    | |                   /_/_/_/\___/\_,_/_/  |
 //	+--------------------------------------------------------------+
-package banner // import "moul.io/banner"
+package banner // import "github.com/j-edgizer/banner"

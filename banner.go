@@ -2,15 +2,17 @@ package banner
 
 import (
 	"strings"
+
+	"github.com/j-edgizer/banner/fonts"
 )
 
-func Inline(input string) string {
+func Inline(input string, font fonts.Font) string {
 	input = strings.TrimSpace(input)
 	if len(input) == 0 {
 		return ""
 	}
 
-	lines := small.Get(rune(input[0])).lines()
+	lines := font.Get(rune(input[0])).Lines()
 	height := len(lines)
 	if len(input) > 1 {
 		for _, r := range input[1:] {
@@ -20,7 +22,7 @@ func Inline(input string) string {
 					lines[i] += "  "
 				}
 			default:
-				letter := small.Get(r).lines()
+				letter := font.Get(r).Lines()
 				for i := 0; i < height; i++ {
 					lines[i] += letter[i]
 				}
@@ -38,25 +40,4 @@ func Inline(input string) string {
 		lines = lines[1:]
 	}
 	return strings.Join(lines, "\n")
-}
-
-type font map[rune]letter
-
-func (f font) Get(key rune) letter {
-	letter, found := f[key]
-	if found {
-		return letter
-	}
-	return f['?']
-}
-
-type letter string
-
-func (l letter) String() string {
-	return strings.Join(l.lines(), "\n")
-}
-
-func (l letter) lines() []string {
-	trim := string(l[1 : len(l)-2])
-	return strings.Split(trim, "@\n")
 }

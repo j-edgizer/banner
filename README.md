@@ -18,15 +18,16 @@ Pure-go library to generate ASCII-art banners from text.
 * very lightweight footprint at the end in the generated binary
   * ~38kb with default build options
   * ~12kb with upx + binary strip
-* only one font available ([small.flf](http://www.figlet.org/fontdb_example.cgi?font=small.flf))
-  * incomplete alphabet (a-zA-Z.-_?)
+* few fonts available by default ([small.flf](http://www.figlet.org/fontdb_example.cgi?font=small.flf), [standard.flf](http://www.figlet.org/fontdb_example.cgi?font=small.flf), [banner.flf](http://www.figlet.org/fontdb_example.cgi?font=banner.flf))
+  * complete alphabet and special characters
+  * importer available for further fonts
 
 ## Usage
 
 ```go
 import "moul.io/banner"
 
-fmt.Println(banner.Inline("hey world."))
+fmt.Println(banner.Inline("hey world.", fonts.Small))
 ```
 
 ```
@@ -35,6 +36,11 @@ fmt.Println(banner.Inline("hey world."))
 | ' \ / -_)| || |  \ V  V // _ \| '_|| |/ _` | _
 |_||_|\___| \_, |   \_/\_/ \___/|_|  |_|\__,_|(_)
             |__/
+```
+
+If you want to add more fonts to this library, run
+```sh
+go run fonts/importer/font_importer.go --name mini
 ```
 
 ## Install
